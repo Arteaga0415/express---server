@@ -1,7 +1,7 @@
 ## Express Tutorial
 
-* create express app 
-* set up routes
-* display data
-* serve html files both static and EJS
-* middleware
+* with an express app 
+* create models 
+* create Controllers 
+* create a local DB with mongoDB 
+* conect to the DB and build API.
