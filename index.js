@@ -31,7 +31,7 @@ app.get('/middle/:number', (req, res, next) => {
   res.send(`middleware ${req.params.number}`)
 })
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 app.use(router);
 
 app.listen(port, () => {

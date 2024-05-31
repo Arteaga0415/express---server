@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 mongoose.connect('mongodb://127.0.0.1:27017/expressDBTutorial').
@@ -14,4 +14,4 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = { User };
+module.exports = { User }

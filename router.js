@@ -6,26 +6,32 @@ router.get('/routes', (req, res) => {
   res.send('hello world with router')
 });
 
-router.get('/getuser', async (req, res) => {
+router.get('/getUsers', async (req, res) => {
   try {
-    const users = await User.find();
-    res.json(users).status(200);
+    const users = await User.find({});
+    if (!users) {
+      console.error('No users found');
+    }
+    res.status(200).json(users);
   } catch (error) {
-    res.status(500)
-    console.log('Error getting users: ', error);
+    res.status(500);
+    console.error('Error finding users: ', error);
   }
 });
 
-router.post('/postuser', async (req, res) => {
+router.post('/postUsers', async (req, res) => {
   try {
-    const users = new User(req.body);
-    //check that the user 
-    await users.save();
+    if (!req.body) {
+      console.error('No data in the body found');
+    }
+    const user = new User(req.body);
+    await user.save()
     res.status(201).json(users);
   } catch (error) {
-    res.status(500)
-    console.log('Error getting users: ', error);
+    res.status(500);
+    console.error('Error posting users: ', error);
   }
 });
+
 
 module.exports = router;
