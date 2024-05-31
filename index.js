@@ -4,8 +4,8 @@ const port = 3333
 const path = require('path')
 
 const items = [ 'pizza', 'burger', 'brownie', 'ice cream', 'hot-dog' ];
-function logger() {
-  console.log('Middleware logger!');
+function logger(url) {
+  console.log('Middleware logger, Request URL: ', req.originalUrl);
 };
 
 app.get('/', (req, res) => {
@@ -22,10 +22,7 @@ app.get('/index', (req, res) => {
 
 //middleware
 app.get('/middle/:number', (req, res, next) => {
-  console.log('Request URL: ', req.originalUrl)
-  next()
-}, (req, res, next) => {
-  logger()
+  logger(req.originalUrl)
   next()
 }, (req, res) => {
   res.send(`middleware ${req.params.number}`)
